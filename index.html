@@ -4,31 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lay's — Awaken Crunch | Potato Chips</title>
-<meta name="description" content="Lay's potato chips: real potatoes, the perfect crunch, iconic flavours. Awaken Crunch, Drive Every Moment.">
+<meta name="description" content="Lay's potato chips: real potatoes, sliced thin, cooked golden. Awaken Crunch, Drive Every Moment.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%2300A852'/></svg>">
-<link rel="stylesheet" href="assets/css/style.css">
-<script>setTimeout(function(){var p=document.getElementById('loader');if(p&&!p.classList.contains('done')){p.classList.add('done');document.body.classList.add('is-loaded');setTimeout(function(){p.remove()},900)}},7000);</script>
+<link rel="preload" href="assets/fonts/arimo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css?v=3">
+<script>setTimeout(function(){var p=document.getElementById('loader');if(p&&!p.classList.contains('done')){p.classList.add('done');setTimeout(function(){p.remove();document.body.classList.add('is-loaded')},900)}},9000);</script>
 </head>
 <body>
 
-<!-- LOADER -->
+<!-- LOADER (spec §4) -->
 <div id="loader" aria-hidden="true">
-  <p class="loader-brand">Lay's</p>
   <div class="loader-imgs">
-    <img src="assets/images/plates/plate-1.jpg" alt="">
-    <img src="assets/images/plates/plate-2.jpg" alt="">
-    <img src="assets/images/plates/plate-3.jpg" alt="">
-    <img src="assets/images/plates/plate-4.jpg" alt="">
-    <img src="assets/images/plates/plate-5.jpg" alt="">
+    <img class="lplate" src="assets/images/plates/plate-1.jpg" alt="">
+    <img class="lplate" src="assets/images/plates/plate-2.jpg" alt="">
+    <img class="lplate" src="assets/images/plates/plate-3.jpg" alt="">
+    <img class="lplate" src="assets/images/plates/plate-4.jpg" alt="">
+    <img class="lplate" src="assets/images/plates/plate-5.jpg" alt="">
   </div>
-  <p class="loader-word" data-word="Lay's"><span>Lay's</span></p>
-  <p class="loader-pct" id="loaderPct">0%</p>
+  <p class="loader-word loader-word-gray" aria-hidden="true">Lay's</p>
+  <p class="loader-word loader-word-white" id="loaderWordWhite"><span>L</span><span>a</span><span>y</span><span>'</span><span>s</span></p>
 </div>
 
-<!-- WEBGL -->
+<!-- WEBGL (spec §11) -->
 <div id="webgl" aria-hidden="true"></div>
 
-<!-- HEADER -->
+<!-- HEADER (spec §12) -->
 <header id="siteHeader">
   <div class="header-inner">
     <a class="head-logo" href="#kv" data-goto="kv" aria-label="Lay's home">Lay's</a>
@@ -42,207 +42,270 @@
   </div>
 </header>
 
-<!-- SCENE NAVI -->
+<!-- SCENE NAVI (spec §12) -->
 <nav class="scene-navi" id="sceneNavi" aria-label="Scenes">
-  <button type="button" data-goto="chapter1"><span class="dot"></span><span class="navi-label">About / Concept</span></button>
-  <button type="button" data-goto="chapter2"><span class="dot"></span><span class="navi-label">About / Potato &amp; Craft</span></button>
-  <button type="button" data-goto="chapter3"><span class="dot"></span><span class="navi-label">Science &amp; Technology</span></button>
-  <button type="button" data-goto="chapter4"><span class="dot"></span><span class="navi-label">Product</span></button>
-  <button type="button" data-goto="chapter5"><span class="dot"></span><span class="navi-label">Interview</span></button>
-  <button type="button" data-goto="product"><span class="dot"></span><span class="navi-label">Lay's</span></button>
+  <button type="button" data-scene-id="0" data-goto="chapter1"><span class="dot"></span><svg class="progress-ring" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5"/></svg><span class="navi-label"><span>About / Concept</span></span></button>
+  <button type="button" data-scene-id="1" data-goto="chapter2"><span class="dot"></span><svg class="progress-ring" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5"/></svg><span class="navi-label"><span>About / Potato &amp; Craft</span></span></button>
+  <button type="button" data-scene-id="2" data-goto="chapter3"><span class="dot"></span><svg class="progress-ring" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5"/></svg><span class="navi-label"><span>Flavour Science</span></span></button>
+  <button type="button" data-scene-id="3" data-goto="chapter4"><span class="dot"></span><svg class="progress-ring" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5"/></svg><span class="navi-label"><span>About / Product</span></span></button>
+  <button type="button" data-scene-id="4" data-goto="chapter5"><span class="dot"></span><svg class="progress-ring" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11.5"/></svg><span class="navi-label"><span>About / Voices</span></span></button>
 </nav>
 
-<!-- SCENE INDICATOR -->
-<div class="scene-indicator" id="sceneIndicator">
-  <button class="indicator-cube" id="indicatorBtn" type="button" aria-label="Next scene">
-    <span class="ind-face ind-front"><span class="ind-label" id="indLabelA">About / Concept</span><span class="ind-arrow">›</span></span>
-    <span class="ind-face ind-top"><span class="ind-label" id="indLabelB">About / Concept</span><span class="ind-arrow">›</span></span>
-  </button>
+<!-- SCENE INDICATOR (spec §12) -->
+<div class="scene-indicator invisible" id="sceneIndicator">
+  <div class="indicator-cube" id="indicatorCube">
+    <div class="ind-face ind-f0"><span class="ind-label">About / Concept</span><span class="ind-arrow">›</span></div>
+    <div class="ind-face ind-f1"><span class="ind-label">About / Potato &amp; Craft</span><span class="ind-arrow">›</span></div>
+    <div class="ind-face ind-f2"><span class="ind-label">Flavour Science</span><span class="ind-arrow">›</span></div>
+    <div class="ind-face ind-f3"><span class="ind-label">About / Product</span><span class="ind-arrow">›</span></div>
+  </div>
 </div>
 
 <main id="top">
 
-  <!-- KV / HERO -->
-  <section class="kv" id="kv" data-scene="0">
+  <!-- KV / HERO (spec §5, §6) -->
+  <section class="kv" id="kv" data-section="kv" data-probe-section="kv">
     <div class="kv-stage">
-      <div class="kv-copy">
+      <div class="kv-copy" id="kvCopy">
         <div class="copy-group-top">
-          <p class="kv-line split">Awaken</p>
-          <p class="kv-line split">Crunch,</p>
+          <p class="kv-line t-t-1" data-split>Awaken</p>
+          <p class="kv-line t-t-2" data-split>Crunch,</p>
         </div>
         <p class="kv-bracket" aria-hidden="true"><span class="bracket-left">(</span><span class="bracket-right">)</span></p>
         <div class="copy-group-bottom">
-          <p class="kv-line split">Drive</p>
-          <p class="kv-line split">Every Moment</p>
-          <p class="kv-sub split-s">Your own crunch, from today.</p>
+          <p class="kv-line t-b-1" data-split>Drive</p>
+          <p class="kv-line t-b-2" data-split>Every Moment</p>
+          <p class="kv-sub">Your own crunch, from today.</p>
         </div>
       </div>
-      <p class="kv-keyword-left"><span>Real Potato Chips</span></p>
-      <p class="kv-keyword-right"><span>Perfect Crunch Energy</span></p>
-      <div class="circle-arrow" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M24 15v18M17 26l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      <p class="kv-keyword-left"><span class="kv-keyword__inner">Potato Chips</span></p>
+      <p class="kv-keyword-right"><span class="kv-keyword__inner">Betcha can't eat just one</span></p>
+      <div class="circle-arrow" id="circleArrow" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M24 15v18M17 26l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
     </div>
-    <div class="scroll-area"></div>
+    <div class="scroll-area" data-area="kv" data-probe-section="kv"></div>
   </section>
 
-  <!-- SUMMARY -->
-  <section class="summary" id="summary" data-scene="1">
-    <div class="summary-stage">
-      <p class="summary-statement">We awaken the power that already lives in the potato — <strong>“Perfect Crunch Energy.”</strong></p>
-      <div class="summary-blocks">
-        <p class="summary-block">A great chip is not a break from the day. It is the spark that moves it.</p>
-        <p class="summary-block">One farm-grown potato, sliced thin, cooked golden, seasoned bold.</p>
-        <p class="summary-block">That is the whole idea — and it has worked since 1932.</p>
+  <!-- INTRODUCTION / SUMMARY (spec §7) -->
+  <section class="intro" id="introduction" data-section="homeIntroduction">
+    <div class="intro-stage" id="introStage">
+      <p class="intro-copy" id="introCopy">Awaken the potato's own crunch —<br>the idea behind <strong>“Betcha can't eat just one”</strong>.</p>
+      <div class="intro-blocks" id="introBlocks">
+        <p class="fade-paragraph">Lay's</p>
+        <p class="fade-paragraph">In work and in rest,</p>
+        <p class="fade-paragraph">in every scene of the day,</p>
+        <p class="fade-paragraph">one thing matters: the potato.</p>
+        <p class="fade-paragraph">To bring out the potato's own crunch,</p>
+        <p class="fade-paragraph">“Betcha can't eat just one”</p>
+        <p class="fade-paragraph">became the idea behind Lay's.</p>
+        <p class="fade-paragraph">And the chip that gave it form</p>
+        <p class="fade-paragraph">is made from real potatoes,</p>
+        <p class="fade-paragraph">sliced thin,</p>
+        <p class="fade-paragraph">and cooked until golden:</p>
+        <p class="fade-paragraph">Lay's potato chips.</p>
+        <p class="fade-paragraph">One bite is never enough —</p>
+        <p class="fade-paragraph">at work, at play, in every scene,</p>
+        <p class="fade-paragraph">the crunch carries the moment.</p>
       </div>
-      <p class="summary-logo">Lay's</p>
+      <p class="intro-logo intro-logo-white" id="logoWhite">Lay's</p>
+      <p class="intro-logo intro-logo-green" id="logoGreen">Lay's</p>
     </div>
-    <div class="scroll-area"></div>
+    <div class="scroll-area" data-area="intro">
+      <div data-seg="copy"></div><div data-seg="summary"></div><div data-seg="out"></div>
+    </div>
   </section>
 
-  <!-- CHAPTER 1 -->
-  <section class="chapter" id="chapter1" data-scene="2">
-    <div class="chapter-stage">
-      <p class="chapter-no">Chapter 1</p>
-      <h2 class="chapter-heading">The crunch is<br>the energy of the moment.</h2>
-      <p class="chapter-kicker">( About / Concept )</p>
-      <div class="text-blocks">
-        <p class="text-block">When you are pushing through the day, and when you finally rest — the body keeps spending energy.</p>
-        <p class="text-block">A Lay's chip gives a little of it back: real potato, real flavour, and a crunch you can hear across the room.</p>
+  <!-- CHAPTER TEMPLATE x5 (spec §8) -->
+  <section class="chapter" id="chapter1" data-probe-section="chapter1" data-section="homeChapter01" data-chapter="0">
+    <div class="chapter-group" data-group>
+      <p class="section-label">Chapter 1</p>
+      <h2 class="section-title">The potato is the source<br>of the crunch.</h2>
+      <p class="section-name">( About / Concept )</p>
+    </div>
+    <div class="text-block-wrap" data-wrap>
+      <div class="text-block">
+        <p class="text">At work or at rest,</p>
+        <p class="text">on the move or on the couch —</p>
+        <p class="text">a good chip starts</p>
+        <p class="text">long before the bag is opened.</p>
       </div>
-    </div>
-    <div class="scroll-area"></div>
-  </section>
-
-  <!-- CHAPTER 2 -->
-  <section class="chapter" id="chapter2" data-scene="3">
-    <div class="chapter-stage">
-      <p class="chapter-no">Chapter 2</p>
-      <h2 class="chapter-heading">A crunch changes<br>with the care behind it.</h2>
-      <p class="chapter-kicker">( About / Potato &amp; Craft )</p>
-      <div class="text-blocks">
-        <p class="text-block">Every bag begins in the field, not the factory — potatoes bred for one thing: the perfect chip.</p>
-        <p class="text-block">Harvested at peak, sliced within hours, cooked until the colour turns golden. Seconds decide everything.</p>
-      </div>
-    </div>
-    <div class="scroll-area"></div>
-  </section>
-
-  <!-- CHAPTER 3 -->
-  <section class="chapter" id="chapter3" data-scene="4">
-    <div class="chapter-stage">
-      <p class="chapter-no">Chapter 3</p>
-      <h2 class="chapter-heading">Decades of research found<br>the key: the golden slice.</h2>
-      <p class="chapter-kicker">( Science &amp; Technology )</p>
-      <div class="text-blocks">
-        <p class="text-block">Our flavour kitchen studies how salt, spice, tang and smoke land on the tongue — in what order, at what strength.</p>
-        <p class="text-block">That is why Magic Masala blooms slowly, why Tomato Tango hits sweet first, tangy second, and why Classic Salted tastes like pure potato, amplified.</p>
+      <div class="text-block">
+        <p class="text">It starts with three things:</p>
+        <p class="text">the right potato, grown for chipping;</p>
+        <p class="text">a thin slice; and hot oil.</p>
       </div>
     </div>
-    <div class="scroll-area"></div>
+    <div class="scroll-area" data-area="chapter">
+      <div data-seg="margin"></div><div data-seg="title-inout"></div><div data-seg="in"></div><div data-seg="view"></div><div data-seg="out"></div>
+    </div>
   </section>
 
-  <!-- CHAPTER 4 -->
-  <section class="chapter" id="chapter4" data-scene="5">
-    <div class="chapter-stage">
-      <p class="chapter-no">Chapter 4</p>
-      <h2 class="chapter-heading">Awaken the crunch.<br>Perfect Crunch Energy — Lay's.</h2>
-      <p class="chapter-kicker">( Product )</p>
-      <div class="text-blocks">
-        <p class="text-block">One potato. One slice. One golden minute in the cooker. Everything else is seasoning.</p>
-        <p class="text-block">Born from a single idea — the potato already has the power. We just wake it up.</p>
+  <section class="chapter" id="chapter2" data-probe-section="chapter2" data-section="homeChapter02" data-chapter="1">
+    <div class="chapter-group" data-group>
+      <p class="section-label">Chapter 2</p>
+      <h2 class="section-title">The crunch of a chip changes<br>with the potato and the season.</h2>
+      <p class="section-name">( About / Potato &amp; Craft )</p>
+    </div>
+    <div class="text-block-wrap" data-wrap>
+      <div class="text-block">
+        <p class="text">In the field, in the slicer, in the cooker —</p>
+        <p class="text">the potato is essential to the chip.</p>
+      </div>
+      <div class="text-block">
+        <p class="text">But</p>
+        <p class="text">no two harvests</p>
+        <p class="text">are ever the same — soil, weather</p>
+        <p class="text">and variety change what</p>
+        <p class="text">each potato can do.</p>
       </div>
     </div>
-    <div class="scroll-area"></div>
+    <div class="scroll-area" data-area="chapter">
+      <div data-seg="margin"></div><div data-seg="title-inout"></div><div data-seg="in"></div><div data-seg="view"></div><div data-seg="out"></div>
+    </div>
   </section>
 
-  <!-- CHAPTER 5 -->
-  <section class="chapter" id="chapter5" data-scene="6">
-    <div class="chapter-stage">
-      <p class="chapter-no">Chapter 5</p>
-      <h2 class="chapter-heading">The people at the front of flavour<br>are paying attention.</h2>
-      <p class="chapter-kicker">( Interview )</p>
-      <div class="text-blocks">
-        <p class="text-block">“You can hear a Lay's chip from across the room. That sound IS the snack.” <span class="voice-name">— Snack reviewer, Mumbai</span></p>
-        <p class="text-block">“Magic Masala at a cricket match is not food. It is a ritual.” <span class="voice-name">— Fan &amp; home chef, Delhi</span></p>
-        <p class="text-block">“One potato, sliced thin, done right. Ninety years, and nobody has beaten it.” <span class="voice-name">— Food writer, Chicago</span></p>
+  <section class="chapter" id="chapter3" data-probe-section="chapter3" data-section="homeChapter03" data-chapter="2">
+    <div class="chapter-group" data-group>
+      <p class="section-label">Chapter 3</p>
+      <h2 class="section-title">The key to the perfect crunch,<br>found by decades of craft:<br>the thin, golden slice.</h2>
+      <p class="section-name">( Flavour Science )</p>
+    </div>
+    <div class="text-block-wrap" data-wrap>
+      <div class="text-block">
+        <p class="text">The potato —</p>
+        <p class="text">indispensable to the chip.</p>
+        <p class="text">Lay's arrived at its own answer:</p>
+        <p class="text">slice it thin, cook it golden,</p>
+        <p class="text">season it right.</p>
+      </div>
+      <div class="text-block">
+        <p class="text">Its chip-making process —</p>
+        <p class="text">refined since 1938 — turns</p>
+        <p class="text">every harvest into</p>
+        <p class="text">the same golden crunch.</p>
       </div>
     </div>
-    <div class="scroll-area"></div>
+    <div class="scroll-area" data-area="chapter">
+      <div data-seg="margin"></div><div data-seg="title-inout"></div><div data-seg="in"></div><div data-seg="view"></div><div data-seg="out"></div>
+    </div>
   </section>
 
-  <!-- PRODUCT -->
-  <section class="product" id="product" data-scene="7">
-    <div class="product-stage">
+  <section class="chapter" id="chapter4" data-probe-section="chapter4" data-section="homeChapter04" data-chapter="3">
+    <div class="chapter-group" data-group>
+      <p class="section-label">Chapter 4</p>
+      <h2 class="section-title">Put the crunch to work —<br>your own moment.<br>“Betcha can't eat just one” — Lay's.</h2>
+      <p class="section-name">( Product )</p>
+    </div>
+    <div class="text-block-wrap" data-wrap>
+      <div class="text-block">
+        <p class="text">With its own process,</p>
+        <p class="text">Lay's puts the potato's</p>
+        <p class="text">natural flavour to work</p>
+        <p class="text">in every single chip.</p>
+      </div>
+      <div class="text-block">
+        <p class="text">That is Lay's,</p>
+        <p class="text">the potato chip born from one idea:</p>
+        <p class="text">betcha can't eat just one.</p>
+      </div>
+    </div>
+    <div class="scroll-area" data-area="chapter">
+      <div data-seg="margin"></div><div data-seg="title-inout"></div><div data-seg="in"></div><div data-seg="view"></div><div data-seg="out"></div>
+    </div>
+  </section>
+
+  <section class="chapter" id="chapter5" data-probe-section="chapter5" data-section="homeChapter05" data-chapter="4">
+    <div class="chapter-group" data-group>
+      <p class="section-label">Chapter 5</p>
+      <h2 class="section-title">A simple idea, noticed by<br>chefs, fans and snack lovers<br>everywhere.</h2>
+      <p class="section-name">( Voices )</p>
+    </div>
+    <div class="text-block-wrap" data-wrap>
+      <div class="text-block">
+        <p class="text">The one-chip idea</p>
+        <p class="text">draws attention everywhere —</p>
+        <p class="text">from stadium stands</p>
+        <p class="text">to family kitchens.</p>
+      </div>
+      <div class="text-block">
+        <p class="text">On the move or resting at home —</p>
+        <p class="text">a chip for every scene</p>
+        <p class="text">is here.</p>
+      </div>
+    </div>
+    <div class="scroll-area" data-area="chapter">
+      <div data-seg="margin"></div><div data-seg="title-inout"></div><div data-seg="in"></div><div data-seg="view"></div><div data-seg="out"></div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 6 / PRODUCT (spec §9) -->
+  <section class="product" id="product" data-section="homeChapter06" data-probe-section="product">
+    <div class="product-stage" id="productStage">
       <p class="product-word">Lay's</p>
-      <p class="product-statement">For the moment you want to move, and the moment you want to rest. <strong>Your own crunch, from today.</strong></p>
-      <p class="product-copy">Lay's is a potato chip built on one idea — “Perfect Crunch Energy.” Real potatoes, sliced thin and seasoned bold, for every scene of the day.</p>
-      <ol class="flavour-list">
-        <li><span class="fl-no">01</span><span class="fl-name">Classic Salted</span><span class="fl-note">The original. Potato, oil, salt — nothing to hide behind.</span></li>
-        <li><span class="fl-no">02</span><span class="fl-name">India's Magic Masala</span><span class="fl-note">A bold blend of Indian spices with a slow, warming bloom.</span></li>
-        <li><span class="fl-no">03</span><span class="fl-name">Spanish Tomato Tango</span><span class="fl-note">Sweet tomato first, a tangy twist right behind it.</span></li>
-        <li><span class="fl-no">04</span><span class="fl-name">American Style Cream &amp; Onion</span><span class="fl-note">Cool cream, gentle onion, endlessly snackable.</span></li>
-        <li><span class="fl-no">05</span><span class="fl-name">Chile Limón</span><span class="fl-note">Chili heat with a squeeze of bright lime.</span></li>
-        <li><span class="fl-no">06</span><span class="fl-name">Sour Cream &amp; Onion</span><span class="fl-note">Tangy, creamy, savoury — a global favourite.</span></li>
-        <li><span class="fl-no">07</span><span class="fl-name">Barbecue</span><span class="fl-note">Smoky, sweet and deep, like a summer grill.</span></li>
-        <li><span class="fl-no">08</span><span class="fl-name">Salt &amp; Vinegar</span><span class="fl-note">Sharp, bright and unapologetically tangy.</span></li>
+      <h2 class="product-statement">When you want to get going,<br>and when you want to slow down.<br>Your own crunch, from today.</h2>
+      <div class="product-copy">
+        <p>Lay's is a potato chip made from real farm-grown potatoes, sliced thin and cooked until golden.</p>
+        <p>Salted, spiced or tangy, there is a Lay's for every moment of the day.</p>
+      </div>
+      <ol class="flavour-list" id="flavourList">
+        <li><span class="fl-no">01</span><span class="fl-main"><span class="fl-name">Classic Salted</span><span class="fl-note">Potato, oil and salt — the original Lay's flavour.</span></span></li>
+        <li><span class="fl-no">02</span><span class="fl-main"><span class="fl-name">India's Magic Masala</span><span class="fl-note">A spiced blend created for India, and a bestseller there.</span></span></li>
+        <li><span class="fl-no">03</span><span class="fl-main"><span class="fl-name">Spanish Tomato Tango</span><span class="fl-note">Sweet tomato with a tangy finish.</span></span></li>
+        <li><span class="fl-no">04</span><span class="fl-main"><span class="fl-name">American Style Cream &amp; Onion</span><span class="fl-note">Cool cream and onion, made for the Indian palate.</span></span></li>
+        <li><span class="fl-no">05</span><span class="fl-main"><span class="fl-name">Chile Limón</span><span class="fl-note">Chili heat with lime, a favourite in Mexico and the US.</span></span></li>
+        <li><span class="fl-no">06</span><span class="fl-main"><span class="fl-name">Sour Cream &amp; Onion</span><span class="fl-note">A classic flavour sold around the world.</span></span></li>
+        <li><span class="fl-no">07</span><span class="fl-main"><span class="fl-name">Barbecue</span><span class="fl-note">Smoky and sweet, inspired by the grill.</span></span></li>
+        <li><span class="fl-no">08</span><span class="fl-main"><span class="fl-name">Salt &amp; Vinegar</span><span class="fl-note">Sharp vinegar tang, a British-born classic.</span></span></li>
       </ol>
-      <p class="dosage"><span>1 pack = 1 moment</span><span class="dosage-sep">·</span><span>Sharing bag 150g</span><span class="dosage-sep">※</span><span>perfect for 2–3 scenes</span></p>
+      <p class="pack-line">Single-serve and sharing packs <span class="pack-sep">※</span> net weight varies by flavour</p>
     </div>
-    <div class="scroll-area"></div>
+    <div class="scroll-area" data-area="product">
+      <div data-seg="in"></div><div data-seg="view"></div><div data-seg="out"></div>
+    </div>
   </section>
 
-  <!-- ON / OFF -->
-  <section class="onoff" id="onoff" data-scene="8">
+  <!-- ON / OFF (spec §10) -->
+  <section class="onoff" id="onoff" data-section="homeSceneOnOff" data-probe-section="onoff">
     <div class="onoff-stage">
-      <h2 class="onoff-heading">For every person, in every scene — a chip that fits the moment.</h2>
+      <h2 class="onoff-heading" id="onoffTitle">So everyone can enjoy<br>their moment, in every scene.</h2>
       <div class="content-on" id="contentOn">
         <p class="onoff-label">ON</p>
         <ul class="onoff-list">
-          <li><p class="onoff-title">For Movie Night</p><p class="onoff-cap">The bowl empties before the opening scene ends.</p></li>
-          <li><p class="onoff-title">For Game Day</p><p class="onoff-cap">Fuel for the full ninety minutes.</p></li>
-          <li><p class="onoff-title">For Picnic</p><p class="onoff-cap">Sunshine tastes better with a crunch.</p></li>
-          <li><p class="onoff-title">For Road Trip</p><p class="onoff-cap">The passenger seat's favourite co-pilot.</p></li>
+          <li class="list-item"><span class="list-item-group"><span class="onoff-title">For Work</span><span class="onoff-cap">For one more push before the deadline.</span></span></li>
+          <li class="list-item"><span class="list-item-group"><span class="onoff-title">For Sports</span><span class="onoff-cap">A shareable crunch for the whole team.</span></span></li>
+          <li class="list-item"><span class="list-item-group"><span class="onoff-title">For Hobby</span><span class="onoff-cap">Make a good hobby hour even better.</span></span></li>
+          <li class="list-item"><span class="list-item-group"><span class="onoff-title">For Housework</span><span class="onoff-cap">A small reward between daily chores.</span></span></li>
         </ul>
       </div>
       <div class="content-off" id="contentOff">
         <p class="onoff-label">OFF</p>
         <ul class="onoff-list">
-          <li><p class="onoff-title">For Break</p><p class="onoff-cap">A short pause, done properly.</p></li>
-          <li><p class="onoff-title">For Chill</p><p class="onoff-cap">Nowhere to be. Chips to finish.</p></li>
-          <li><p class="onoff-title">For Slow Afternoon</p><p class="onoff-cap">Let the day drift a little.</p></li>
-          <li><p class="onoff-title">For Night In</p><p class="onoff-cap">One last handful before lights out.</p></li>
+          <li class="list-item"><span class="list-item-group"><span class="onoff-title">For Break</span><span class="onoff-cap">A short pause, even in a busy day.</span></span></li>
+          <li class="list-item"><span class="list-item-group"><span class="onoff-title">For Holiday</span><span class="onoff-cap">A slow day off, a bag within reach.</span></span></li>
+          <li class="list-item"><span class="list-item-group"><span class="onoff-title">For Relax</span><span class="onoff-cap">At the end of the day, mind and body unwind.</span></span></li>
+          <li class="list-item"><span class="list-item-group"><span class="onoff-title">For Rest</span><span class="onoff-cap">Deep rest on an ordinary night.</span></span></li>
         </ul>
       </div>
     </div>
-    <div class="scroll-area"></div>
+    <div class="scroll-area" data-area="onoff">
+      <div data-seg="in"></div><div data-seg="view"></div><div data-seg="out-before"></div><div data-seg="out"></div>
+    </div>
   </section>
 
-  <!-- VIDEO CARDS -->
-  <section class="cards" id="cards" data-scene="9">
+  <!-- VIDEO CARDS (spec §12) -->
+  <section class="cards" id="cards">
     <div class="cards-stage">
       <div class="card-row">
         <button class="video-card" type="button" data-video="assets/video/card-concept.mp4" data-title="About">
-          <span class="cube">
-            <span class="face face-front"><img src="assets/video/card-concept.jpg" alt="About — the idea"><span class="card-label">About</span><span class="card-cap">The idea that wakes the potato's own power</span><span class="card-play">▶</span></span>
-            <span class="face face-back"><img src="assets/video/card-concept.jpg" alt=""><span class="card-label">About</span><span class="card-cap">Watch the film</span><span class="card-play">▶</span></span>
-          </span>
+          <span class="cube"><span class="face face-front"><img src="assets/video/card-concept.jpg" alt="About — the idea behind the crunch"><span class="card-label">About</span><span class="card-cap">The idea behind the crunch</span></span><span class="face face-back"><img src="assets/video/card-concept.jpg" alt=""><span class="card-label">About</span><span class="card-cap">Watch the film</span></span></span>
         </button>
         <button class="video-card" type="button" data-video="assets/video/card-craft.mp4" data-title="Science &amp; Technology">
-          <span class="cube">
-            <span class="face face-front"><img src="assets/video/card-craft.jpg" alt="Science and Technology — potato and craft"><span class="card-label">Science &amp; Technology</span><span class="card-cap">The golden slice, the blooming seasoning</span><span class="card-play">▶</span></span>
-            <span class="face face-back"><img src="assets/video/card-craft.jpg" alt=""><span class="card-label">Science &amp; Technology</span><span class="card-cap">Watch the film</span><span class="card-play">▶</span></span>
-          </span>
+          <span class="cube"><span class="face face-front"><img src="assets/video/card-craft.jpg" alt="Science and Technology — the thin golden slice"><span class="card-label">Science &amp; Technology</span><span class="card-cap">The thin, golden slice</span></span><span class="face face-back"><img src="assets/video/card-craft.jpg" alt=""><span class="card-label">Science &amp; Technology</span><span class="card-cap">Watch the film</span></span></span>
         </button>
         <button class="video-card" type="button" data-video="assets/video/card-product.mp4" data-title="Product">
-          <span class="cube">
-            <span class="face face-front"><img src="assets/video/card-product.jpg" alt="Product — the flavours"><span class="card-label">Product</span><span class="card-cap">Eight iconic flavours, one perfect crunch</span><span class="card-play">▶</span></span>
-            <span class="face face-back"><img src="assets/video/card-product.jpg" alt=""><span class="card-label">Product</span><span class="card-cap">Watch the film</span><span class="card-play">▶</span></span>
-          </span>
+          <span class="cube"><span class="face face-front"><img src="assets/video/card-product.jpg" alt="Product — eight flavours, one crunch"><span class="card-label">Product</span><span class="card-cap">Eight flavours, one crunch</span></span><span class="face face-back"><img src="assets/video/card-product.jpg" alt=""><span class="card-label">Product</span><span class="card-cap">Watch the film</span></span></span>
         </button>
         <button class="video-card" type="button" data-video="assets/video/card-voices.mp4" data-title="Interview">
-          <span class="cube">
-            <span class="face face-front"><img src="assets/video/card-voices.jpg" alt="Interview — voices"><span class="card-label">Interview</span><span class="card-cap">Why people notice the crunch</span><span class="card-play">▶</span></span>
-            <span class="face face-back"><img src="assets/video/card-voices.jpg" alt=""><span class="card-label">Interview</span><span class="card-cap">Watch the film</span><span class="card-play">▶</span></span>
-          </span>
+          <span class="cube"><span class="face face-front"><img src="assets/video/card-voices.jpg" alt="Interview — why one is never enough"><span class="card-label">Interview</span><span class="card-cap">Why one is never enough</span></span><span class="face face-back"><img src="assets/video/card-voices.jpg" alt=""><span class="card-label">Interview</span><span class="card-cap">Watch the film</span></span></span>
         </button>
       </div>
     </div>
@@ -250,15 +313,12 @@
 
 </main>
 
-<!-- FOOTER -->
+<!-- FOOTER (spec §12) -->
 <footer id="siteFooter">
   <div class="footer-content">
     <div class="footer-main">
       <button class="to-top-cube" id="toTop" type="button" aria-label="Back to top">
-        <span class="cube">
-          <span class="face face-front"><span>Back to Top</span><span class="ind-arrow">↑</span></span>
-          <span class="face face-back"><span>Back to Top</span><span class="ind-arrow">↑</span></span>
-        </span>
+        <span class="cube"><span class="face face-front"><span>Back to Top</span><span class="ind-arrow">↑</span></span><span class="face face-back"><span>Back to Top</span><span class="ind-arrow">↑</span></span></span>
       </button>
       <nav class="foot-nav" aria-label="Footer">
         <a href="#kv" data-goto="kv">Home</a>
@@ -271,24 +331,23 @@
       <p class="foot-word">Lay's</p>
     </div>
     <div class="footer-side">
-      <p class="foot-note">Awaken Crunch, Drive Every Moment.<br>Real potatoes. Iconic flavours. Since 1932.</p>
+      <p class="foot-note">Awaken Crunch, Drive Every Moment.<br>Real potatoes. Iconic flavours. Since 1938.</p>
       <p class="foot-small">© Lay's concept tribute — built for demonstration. Lay's is a trademark of Frito-Lay.</p>
     </div>
   </div>
 </footer>
 
-<!-- VIDEO MODAL -->
+<!-- VIDEO MODAL (spec §12) -->
 <div class="video-modal" id="videoModal" aria-hidden="true">
   <button class="modal-close" id="modalClose" type="button" aria-label="Close video">×</button>
-  <p class="modal-title" id="modalTitle">About</p>
   <video id="modalVideo" src="" poster="" controls playsinline preload="none"></video>
+  <p class="modal-title" id="modalTitle">About</p>
 </div>
 
 <script src="assets/js/vendor/gsap.min.js"></script>
-<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/vendor/lenis.min.js"></script>
 <script src="assets/js/vendor/three.min.js"></script>
-<script src="assets/js/webgl.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/webgl.js?v=3"></script>
+<script src="assets/js/main.js?v=3"></script>
 </body>
 </html>
