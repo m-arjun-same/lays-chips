@@ -13,8 +13,8 @@
 
 /* ---------- tokens (V2 dossier + spec) ---------- */
 :root {
-  --ink: #111312; --paper: #ffffff; --green: #00A852; --deep: #2F6457; --dark: #133221;
-  --pale: #E8F6F1; --pale2: #DDEAE5; --grey-b: #dfdfdf; --grey: #9ca3af;
+  --ink: #17100B; --paper: #ffffff; --green: #E31837; --deep: #641E11; --dark: #38090B;
+  --pale: #FFF3D0; --pale2: #FFEFC2; --grey-b: #dfdfdf; --grey: #9ca3af;
   --ease-house: cubic-bezier(.3,.26,.38,1);
   --header-color: #ffffff; --header-color-duration: .5s; --header-color-easing: cubic-bezier(.3,.26,.38,1);
   --l-padding-left: 34px; --l-padding-right: 10px;
@@ -73,7 +73,7 @@ main { position: relative; z-index: 1; }
 .loader-imgs .lplate { position: absolute; width: clamp(120px, 18vw, 260px); aspect-ratio: 4/3; object-fit: cover; clip-path: inset(0 100% 0 0); }
 .loader-word { position: absolute; left: 50%; bottom: 4vh; transform: translateX(-50%); margin: 0; white-space: nowrap;
   font-family: 'HelveticaNowDisplay-Md', sans-serif; font-size: clamp(5rem, -.714rem + 11.9vw, 10rem); line-height: 1; letter-spacing: 0; }
-.loader-word-gray { color: #3a3f3c; }
+.loader-word-gray { color: #4A4038; }
 .loader-word-white { color: #fff; opacity: 0; }
 .loader-word-white span { display: inline-block; }
 
@@ -304,8 +304,8 @@ body.navi-green .scene-navi { color: var(--green); }
 .video-card .face { position: absolute; inset: 0; backface-visibility: hidden; background: var(--green); color: #fff; overflow: hidden; display: block; }
 .video-card .face-back { transform: rotateY(180deg); }
 .video-card .face img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.video-card .card-label { position: absolute; left: 1rem; bottom: 2.2rem; font-size: .875rem; line-height: 1.2; background: rgba(0,168,82,.85); padding: .3rem .6rem; }
-.video-card .card-cap { position: absolute; left: 1rem; bottom: .7rem; font-size: .8125rem; background: rgba(0,168,82,.85); padding: .2rem .6rem; }
+.video-card .card-label { position: absolute; left: 1rem; bottom: 2.2rem; font-size: .875rem; line-height: 1.2; background: rgba(227,24,55,.85); padding: .3rem .6rem; }
+.video-card .card-cap { position: absolute; left: 1rem; bottom: .7rem; font-size: .8125rem; background: rgba(227,24,55,.85); padding: .2rem .6rem; }
 @media (min-width: 768px) { .card-row { grid-template-columns: repeat(4, 1fr); } .video-card .card-label { font-size: 1.125rem; } }
 
 /* ---------- footer (spec §12) ---------- */

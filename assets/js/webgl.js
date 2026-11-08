@@ -28,7 +28,7 @@
     vertexShader: 'varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
     fragmentShader: 'uniform vec3 uTop; uniform vec3 uBot; uniform float uGlowY; varying vec2 vUv;' +
       'void main(){ vec3 c = mix(uBot, uTop, smoothstep(0.0,1.0,vUv.y));' +
-      ' float g = smoothstep(0.9, 0.0, distance(vUv, vec2(0.5, uGlowY))); c += vec3(0.02,0.10,0.05)*g;' +
+      ' float g = smoothstep(0.9, 0.0, distance(vUv, vec2(0.5, uGlowY))); c += vec3(0.10,0.045,0.012)*g;' +
       ' gl_FragColor = vec4(c, 1.0); }',
     depthWrite: false
   });
@@ -40,7 +40,7 @@
     transparent: true, depthWrite: false,
     uniforms: {
       uFeather: { value: 0.2 }, uGlow: { value: 0.0 }, uOpacity: { value: 1.0 }, uTime: { value: 0 },
-      uColA: { value: new THREE.Color(0xeafff3) }, uColB: { value: new THREE.Color(0x35d977) }
+      uColA: { value: new THREE.Color(0xfff3d6) }, uColB: { value: new THREE.Color(0xffc72c) }
     },
     vertexShader: 'varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
     fragmentShader: 'uniform float uFeather; uniform float uGlow; uniform float uOpacity; uniform float uTime;' +
@@ -65,7 +65,7 @@
       'void main(){ float d = length(vUv-0.5)*2.0;' +
       ' float r = mix(0.15, 0.98, uP); float w = 0.02 + uP*0.10;' +
       ' float a = smoothstep(w, 0.0, abs(d-r)) * (1.0-uP*0.6) * uOpacity;' +
-      ' gl_FragColor = vec4(vec3(0.85,1.0,0.92), a); }'
+      ' gl_FragColor = vec4(vec3(1.0,0.92,0.80), a); }'
   });
   var ring = new THREE.Mesh(new THREE.PlaneGeometry(9, 5.4), ringMat);
   ring.position.z = -2.6; scene.add(ring);
@@ -81,9 +81,9 @@
       ' float b1 = blob(p, vec2(0.30+0.10*sin(t*1.3), 0.62+0.08*cos(t)), 0.55);' +
       ' float b2 = blob(p, vec2(0.72+0.12*cos(t*0.9), 0.45+0.10*sin(t*1.1)), 0.48);' +
       ' float b3 = blob(p, vec2(0.52, 0.85+0.05*sin(t*0.7)), 0.40);' +
-      ' vec3 col = vec3(0.11,1.0,0.62)*b1*0.5 + vec3(0.27,1.0,0.65)*b2*0.45 + vec3(0.11,1.0,0.73)*b3*0.4;' +
+      ' vec3 col = vec3(1.0,0.78,0.17)*b1*0.5 + vec3(1.0,0.52,0.05)*b2*0.45 + vec3(1.0,0.86,0.38)*b3*0.4;' +
       ' float streak = smoothstep(0.012, 0.0, abs(p.y - 0.30 - 0.25*sin(p.x*4.0+t))) * 0.35;' +
-      ' col += vec3(0.8,1.0,0.9)*streak;' +
+      ' col += vec3(1.0,0.88,0.66)*streak;' +
       ' gl_FragColor = vec4(col, (b1+b2+b3+streak) * uMix); }'
   });
   var aurora = new THREE.Mesh(new THREE.PlaneGeometry(10, 6), aurMat);
@@ -92,15 +92,15 @@
   /* ---- plates ---- */
   var PLATES = 'assets/images/plates/', SC = 'assets/images/scenes/', IM = 'assets/images/';
   var SETS = {
-    kv:  { tint: 0x51755f, dim: 0.4, items: [[IM + 'hero.jpg', 0.3, -0.2, 3.2, 2.1], [PLATES + 'plate-2.jpg', -3.6, 1.4, 2.6, 1.7], [PLATES + 'plate-4.jpg', 3.7, 1.2, 2.6, 1.7]] },
-    ch1: { tint: 0x5f7a6c, items: [[PLATES + 'plate-1.jpg', -3.2, 1.0, 3.2, 2.1], [PLATES + 'plate-3.jpg', 3.1, 0.6, 2.9, 1.9], [IM + 'farm.jpg', -2.6, -1.6, 2.8, 1.8], [IM + 'potato.jpg', 2.9, -1.7, 2.6, 1.7]] },
-    ch2: { tint: 0x6d8a76, items: [[PLATES + 'plate-5.jpg', -3.0, -0.9, 3.1, 2.0], [IM + 'chips1.jpg', 3.2, 1.1, 2.8, 1.9], [PLATES + 'plate-2.jpg', 2.7, -1.8, 2.5, 1.6]] },
-    ch3: { tint: 0x64856f, items: [[PLATES + 'plate-3.jpg', -3.3, 0.4, 3.0, 2.0], [IM + 'flavour.jpg', 3.0, -1.2, 3.0, 2.0], [PLATES + 'plate-1.jpg', 0.2, 1.9, 2.4, 1.5]] },
-    ch4: { tint: 0x9fd8bd, items: [[IM + 'chips2.jpg', -3.1, 1.2, 2.9, 1.9], [PLATES + 'plate-4.jpg', 3.2, 0.9, 2.8, 1.8], [IM + 'hero.jpg', 2.8, -1.8, 2.5, 1.6]] },
-    ch5: { tint: 0x5f7a6c, items: [[PLATES + 'plate-2.jpg', -3.0, -1.3, 3.0, 2.0], [IM + 'party.jpg', 3.1, 1.0, 2.9, 1.9], [PLATES + 'plate-5.jpg', -2.7, 1.6, 2.4, 1.5]] },
-    ch6: { tint: 0x54755f, items: [[IM + 'hero.jpg', -3.4, -0.6, 3.6, 2.4], [IM + 'chips1.jpg', 3.5, 1.3, 3.2, 2.1]] },
-    on:  { tint: 0xdfe9e2, items: [[SC + 'on-1.jpg', -3.2, 1.1, 2.8, 1.8], [SC + 'on-2.jpg', -3.4, -1.5, 2.6, 1.7], [SC + 'on-3.jpg', 3.2, 1.2, 2.8, 1.8], [SC + 'on-4.jpg', 3.4, -1.4, 2.6, 1.7]] },
-    off: { tint: 0xd3ded6, items: [[SC + 'off-1.jpg', -3.2, 1.1, 2.8, 1.8], [SC + 'off-2.jpg', -3.4, -1.5, 2.6, 1.7], [SC + 'off-3.jpg', 3.2, 1.2, 2.8, 1.8], [SC + 'off-4.jpg', 3.4, -1.4, 2.6, 1.7]] }
+    kv:  { tint: 0x8a6a52, dim: 0.4, items: [[IM + 'hero.jpg', 0.3, -0.2, 3.2, 2.1], [PLATES + 'plate-2.jpg', -3.6, 1.4, 2.6, 1.7], [PLATES + 'plate-4.jpg', 3.7, 1.2, 2.6, 1.7]] },
+    ch1: { tint: 0x8a6a52, items: [[PLATES + 'plate-1.jpg', -3.2, 1.0, 3.2, 2.1], [PLATES + 'plate-3.jpg', 3.1, 0.6, 2.9, 1.9], [IM + 'farm.jpg', -2.6, -1.6, 2.8, 1.8], [IM + 'potato.jpg', 2.9, -1.7, 2.6, 1.7]] },
+    ch2: { tint: 0x9a7a5c, items: [[PLATES + 'plate-5.jpg', -3.0, -0.9, 3.1, 2.0], [IM + 'chips1.jpg', 3.2, 1.1, 2.8, 1.9], [PLATES + 'plate-2.jpg', 2.7, -1.8, 2.5, 1.6]] },
+    ch3: { tint: 0x93755a, items: [[PLATES + 'plate-3.jpg', -3.3, 0.4, 3.0, 2.0], [IM + 'flavour.jpg', 3.0, -1.2, 3.0, 2.0], [PLATES + 'plate-1.jpg', 0.2, 1.9, 2.4, 1.5]] },
+    ch4: { tint: 0xffd98a, items: [[IM + 'chips2.jpg', -3.1, 1.2, 2.9, 1.9], [PLATES + 'plate-4.jpg', 3.2, 0.9, 2.8, 1.8], [IM + 'hero.jpg', 2.8, -1.8, 2.5, 1.6]] },
+    ch5: { tint: 0x8a6a52, items: [[PLATES + 'plate-2.jpg', -3.0, -1.3, 3.0, 2.0], [IM + 'party.jpg', 3.1, 1.0, 2.9, 1.9], [PLATES + 'plate-5.jpg', -2.7, 1.6, 2.4, 1.5]] },
+    ch6: { tint: 0x80644c, items: [[IM + 'hero.jpg', -3.4, -0.6, 3.6, 2.4], [IM + 'chips1.jpg', 3.5, 1.3, 3.2, 2.1]] },
+    on:  { tint: 0xffefc2, items: [[SC + 'on-1.jpg', -3.2, 1.1, 2.8, 1.8], [SC + 'on-2.jpg', -3.4, -1.5, 2.6, 1.7], [SC + 'on-3.jpg', 3.2, 1.2, 2.8, 1.8], [SC + 'on-4.jpg', 3.4, -1.4, 2.6, 1.7]] },
+    off: { tint: 0xffe9b0, items: [[SC + 'off-1.jpg', -3.2, 1.1, 2.8, 1.8], [SC + 'off-2.jpg', -3.4, -1.5, 2.6, 1.7], [SC + 'off-3.jpg', 3.2, 1.2, 2.8, 1.8], [SC + 'off-4.jpg', 3.4, -1.4, 2.6, 1.7]] }
   };
   var groups = {};
   Object.keys(SETS).forEach(function (key) {
@@ -135,7 +135,7 @@
   var PN = 260, pPos = new Float32Array(PN * 3);
   for (var j = 0; j < PN; j++) { var a = Math.random() * Math.PI * 2, r = .4 + Math.random() * 2.6; pPos[j * 3] = Math.cos(a) * r; pPos[j * 3 + 1] = Math.sin(a) * r * 0.62; pPos[j * 3 + 2] = -1.2; }
   pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  var pMat = new THREE.PointsMaterial({ size: 0.09, map: dotTexture(), transparent: true, opacity: 0, depthWrite: false, color: 0xd8ffe9 });
+  var pMat = new THREE.PointsMaterial({ size: 0.09, map: dotTexture(), transparent: true, opacity: 0, depthWrite: false, color: 0xffeec9 });
   var particles = new THREE.Points(pGeo, pMat); scene.add(particles);
 
   /* ---- state + smoothing (spec §11: lerpSpeed .1 class) ---- */

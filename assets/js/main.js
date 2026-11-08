@@ -138,8 +138,8 @@
   var sceneNames = ['Introduction', '( About / Potato & Craft )', '( About / Flavour Science )', '( About / The Craft Line )', '( About / Field Notes )'];
   var weights = { kv: 0, ch1: 0, ch2: 0, ch3: 0, ch4: 0, ch5: 0, ch6: 0, on: 0, off: 0 };
   var FIELDS = { /* sampled from reference screenshots (spec §11) */
-    black: [0, 0, 0], kvTop: [0.043, 0.145, 0.082], kvBot: [0.098, 0.278, 0.153], ink: [0.067, 0.075, 0.07], ch1: [0.075, 0.208, 0.125], ch2: [0.035, 0.435, 0.216],
-    ch3: [0, 0.522, 0.255], ch4: [0.05, 0.45, 0.28], ch5: [0, 0.533, 0.263], ch6: [0, 0.514, 0.251], pale: [0.78, 0.875, 0.84]
+    black: [0, 0, 0], kvTop: [0.129, 0.027, 0.031], kvBot: [0.478, 0.118, 0.043], ink: [0.09, 0.063, 0.043], ch1: [0.22, 0.035, 0.043], ch2: [0.949, 0.42, 0.039],
+    ch3: [1.0, 0.475, 0.0], ch4: [0.91, 0.365, 0.016], ch5: [0.976, 0.451, 0.086], ch6: [0.918, 0.345, 0.047], pale: [1.0, 0.914, 0.69]
   };
   function mixc(a, b, t) { return [ht(a[0], b[0], t), ht(a[1], b[1], t), ht(a[2], b[2], t)]; }
 
